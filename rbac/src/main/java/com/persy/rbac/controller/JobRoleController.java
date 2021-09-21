@@ -7,6 +7,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -31,6 +32,19 @@ public class JobRoleController {
 		System.out.println("size :: " + attributeList.getBody().size());
 		System.out.println(attributeList.getBody().get(0).getAttributeValue());
 		return "Welcome to rbac application";
+	}
+	
+	@GetMapping(value="/{id}")
+	public String getById(@PathVariable("id") Long id) {
+		
+		System.out.println("Welcome home");
+		
+		ResponseEntity<List<AttributesVO>> attributeList = restTemplate.exchange("http://UTILITY/attributes", HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<AttributesVO>>() {}
+				);
+		System.out.println("size :: " + attributeList.getBody().size());
+		System.out.println(attributeList.getBody().get(0).getAttributeValue());
+		return "Welcome to rbac application {getById}";
 	}
 
 }
