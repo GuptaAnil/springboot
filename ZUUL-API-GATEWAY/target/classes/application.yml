@@ -1,0 +1,37 @@
+server:
+   port: 8002
+
+spring:
+   application:
+      name: ZUUL-API-GATEWAY
+      
+
+zuul:
+#  prefix: /api/v1
+  routes:
+    UTILITY: /utility/**
+    RBAC_APPLICATION: /rbac/**
+#    SWAGGER-SERVICE: /swagger/**
+
+eureka:
+   client:
+      register-with-eureka: true
+      fetch-registry: true
+      service-url:
+         defaultZone: http://localhost:8761/eureka/
+
+#security:
+# oauth2:
+ # client:
+  # clientId: 8bef6695e96ec1c53414
+   #clientSecret: d3c6761fafb4ffdc3b7a150979a050908c0af853
+   #accessTockenUri: https://github.com/login/oauth/access_token
+   #userAuthorizationUri: https://github.com/login/oauth/authorize
+   #clientAuthenticationScheme: form
+  #resource:
+   #user-info-uri: https://api.github.com/user
+   #prefer-tocken-info: false 
+  
+  
+  
+         
